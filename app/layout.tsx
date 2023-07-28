@@ -1,7 +1,15 @@
+import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./global.css";
 import NavBar from "../components/NavBar";
 import { exo2, orbitron } from "./fonts";
+
+export const metadata: Metadata = {
+    title: {
+        default: "Indie Gamer",
+        template: "%s | Indie Gamer"
+    }
+};
 
 interface LayoutProps {
     children: ReactNode;
