@@ -11,6 +11,7 @@ interface CmsItem {
 export interface Review {
     slug: string;
     title: string;
+    subtitle: string;
     date: string;
     image: string;
 }
@@ -18,12 +19,6 @@ export interface Review {
 export interface FullReview extends Review {
     body: string;
 }
-
-// // TODO getFeaturedReview
-// export async function getFeaturedReview(): Promise<Review> {
-//     const reviews = await getReviews();
-//     return reviews[0];
-// }
 
 export async function getReview(slug: string): Promise<FullReview> {
     const { data } = await fetchReviews({
@@ -75,6 +70,7 @@ function toReveiw(item: CmsItem): Review {
     return {
         slug: attributes.slug,
         title: attributes.title,
+        subtitle: attributes.subtitle,
         date: attributes.publishedAt.slice(0, "yyyy-mm-dd".length),
         image: CMS_URL + attributes.image.data.attributes.url,
     };
