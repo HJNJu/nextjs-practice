@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Heading from "@/components/Heading";
+import PaginationBar from "@/components/PaginationBar";
 import { getReviews } from "@/lib/reviews";
 
 interface ReviewsPageProps {
@@ -22,11 +23,7 @@ export default async function ReviewsPage({ searchParams }: ReviewsPageProps) {
     return (
         <>
             <Heading>Reviews</Heading>
-            <div className="flex gap-2 pb-3">
-                <Link href={`/reviews?page=${page - 1}`}>&lt;</Link>
-                <span>Page {page} of {pageCount}</span>
-                <Link href={`/reviews?page=${page + 1}`}>&gt;</Link>
-            </div>
+            <PaginationBar href="/reviews" page={page} pageCount={pageCount} />
             <ul className="flex flex-row flex-wrap gap-3">
                 {reviews.map((review, index) => 
                     <li key={review.slug} className="bg-white border rounded shadow w-80 hover:shadow-xl">
